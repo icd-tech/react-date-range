@@ -83,6 +83,7 @@ class DateRange extends Component {
       [selectedRange.key || `range${focusedRangeIndex + 1}`]: {
         ...selectedRange,
         ...newSelection.range,
+        isRelative: false,
       },
     });
     this.setState({

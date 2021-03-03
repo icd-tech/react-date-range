@@ -20,7 +20,11 @@ class DefinedRange extends Component {
     const selectedRange = ranges[focusedRange[0]];
     if (!onChange || !selectedRange) return;
     onChange({
-      [selectedRange.key || `range${focusedRange[0] + 1}`]: { ...selectedRange, ...range },
+      [selectedRange.key || `range${focusedRange[0] + 1}`]: {
+        ...selectedRange,
+        ...range,
+        isRelative: true,
+      },
     });
   };
 
