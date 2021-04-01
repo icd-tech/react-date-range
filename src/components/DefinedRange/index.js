@@ -88,7 +88,7 @@ class DefinedRange extends Component {
                     : null,
                 }}
                 key={i}
-                onClick={() => this.handleRangeChange(staticRange.range(this.props), labelContent)}
+                onClick={() => this.handleRangeChange(staticRange.range(this.props), staticRange.label)}
                 onFocus={() => onPreviewChange && onPreviewChange(staticRange.range(this.props))}
                 onMouseOver={() =>
                   onPreviewChange && onPreviewChange(staticRange.range(this.props))
