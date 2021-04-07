@@ -79,13 +79,23 @@ class DateRange extends Component {
     const selectedRange = ranges[focusedRangeIndex];
     if (!selectedRange) return;
     const newSelection = this.calcNewSelection(value, isSingleValue);
-    onChange({
-      [selectedRange.key || `range${focusedRangeIndex + 1}`]: {
-        ...selectedRange,
-        ...newSelection.range,
-        isRelative: false,
-      },
-    });
+
+    let rangeValue = {
+      ...selectedRange,
+      ...newSelection.range,
+    };
+    const allowed = ['startDate', 'endDate', 'key'];
+    const filteredRangeValue = Object.keys(rangeValue)
+      .filter(key => allowed.includes(key))
+      .reduce((obj, key) => {
+        obj[key] = rangeValue[key];
+        return obj;
+      }, {});
+    let onChangeValue = {
+      [selectedRange.key || `range${focusedRangeIndex + 1}`]: filteredRangeValue,
+    };
+    onChange(onChangeValue);
+
     this.setState({
       focusedRange: newSelection.nextFocusRange,
       preview: null,
